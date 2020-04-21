@@ -1,0 +1,25 @@
+// Tela
+.divTela {
+  margin: 0 !important;
+  border-top: 1px solid black;
+}
+// Area da Tabela
+
+// Filtro
+.divTopoTabela {
+  overflow: hidden;
+  padding: 20px;
+}
+.divTopoTabela h5 {
+  float: left;
+}
+.divTopoTabela button {
+  float: right;
+  margin-right: 5px;
+}
+
+// Spinner
+.spinner-border {
+  margin: 0 auto;
+}
+
