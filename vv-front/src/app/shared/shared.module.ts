@@ -1,31 +1,24 @@
-import { SexoPipe } from './services/pipes/sexo.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TextMaskModule } from 'angular2-text-mask';
 import { ReactiveFormsModule } from '@angular/forms';
 
+// Tirar daqui
+import { TextMaskModule } from 'angular2-text-mask';
+
+// Components
 import { CampoControlErroComponent } from './mensagens-formulario/campo-control-erro/campo-control-erro.component';
-import { ConfirmModalComponent } from './modais/confirm-modal/confirm-modal.component';
-import { EnviaEmailComponent } from './modais/envia-email/envia-email.component';
 
-import { MascaraCpfPipe } from './services/pipes/mascara-cpf.pipe';
-import { PrimeiroNomePipe } from './services/pipes/primeiro-nome.pipe';
-import { CorFaixaPipe } from './services/pipes/cor-faixa.pipe';
-import { DataNascimentoPipe } from './services/pipes/data-nascimento.pipe';
-
-
-import { ToastService } from './services/toast/toast.service';
-import { ConfirmModalService } from './modais/confirm-modal/confirm-modal.service';
-import { ValidacoesFormService } from './services/validacoes-form.service';
-import { EnviaEmailService } from './modais/envia-email/envia-email.service';
-import { ModalService } from './modais/modal.service';
-
+// Pipes
+import { MascaraCpfPipe } from './pipes/mascara-cpf.pipe';
+import { PrimeiroNomePipe } from './pipes/primeiro-nome.pipe';
+import { CorFaixaPipe } from './pipes/cor-faixa.pipe';
+import { DataNascimentoPipe } from './pipes/data-nascimento.pipe';
+import { SexoPipe } from './pipes/sexo.pipe';
 
 @NgModule({
   declarations: [
     CampoControlErroComponent,
-    ConfirmModalComponent,
-    EnviaEmailComponent,
+
     // Pipes
     MascaraCpfPipe,
     PrimeiroNomePipe,
@@ -50,16 +43,7 @@ import { ModalService } from './modais/modal.service';
 
     TextMaskModule
   ],
-  providers: [
-    ToastService,
-    ValidacoesFormService,
-    ConfirmModalService,
-    EnviaEmailService,
-    ModalService,
-  ],
-  entryComponents: [
-    ConfirmModalComponent,
-    EnviaEmailComponent
-  ]
+  providers: [],
+  entryComponents: []
 })
 export class SharedModule { }

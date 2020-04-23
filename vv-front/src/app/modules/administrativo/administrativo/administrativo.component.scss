@@ -1,0 +1,72 @@
+.header {
+  background-color: rgb(244, 244, 244);
+  overflow: hidden;
+  height: 60px;
+  padding: 5px;
+  border-bottom: 1px solid #c8c8c8;
+  box-shadow: 3px 3px 1px rgba(207, 207, 207, 0.226);
+}
+.divLeft{
+  width: 13%;
+}
+
+.divCentral{
+  width: 87%;
+}
+
+.divMenu {
+  padding-left: 0;
+  padding-top: 0;
+
+  width: 13%;
+}
+
+.divCentral {
+  width: 87%;
+}
+
+.divRow {
+  margin-right: 0;
+  padding-top: 2em;
+}
+.divMenus {
+  text-align: center;
+  padding-left: 1em;
+}
+
+.subMenu {
+  background-color: rgba(189, 241, 182, 0.616);
+}
+.linkInicio {
+  background-color: rgb(189, 241, 182);
+}
+
+.linkInicio,
+.subMenu {
+  font-weight: bold !important;
+  cursor: pointer;
+}
+.list-group-item {
+  color: black !important;
+}
+
+// Alinhando o painel quando a tela ficar menor
+@media (max-width: 768px) {
+  .col-sm-12 {
+    padding-right: 0;
+  }
+}
+
+// Spinner
+.rowSpinner{
+  width: 100%;
+  align-items: center;
+}
+.divSpinner{
+  margin: 0 auto;
+}
+
+.tela {
+  padding: 0;
+
+}

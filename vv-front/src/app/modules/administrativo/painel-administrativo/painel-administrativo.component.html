@@ -1,0 +1,86 @@
+<div class="ui-g">
+    <div class="ui-g-12 ui-m-12">
+      <p-carousel [value]="cars" [numVisible]="3" [numScroll]="1"[autoplayInterval]="3000">
+        <p-header>
+          <h3>Basic</h3>
+      </p-header>
+        <ng-template let-car pTemplate="item">
+          <div class="car-details">
+            <div class="p-grid p-nogutter">
+              <div class="p-col-12">
+                <img src="./../../../../assets/header/Audi.png" />
+              </div>
+              <div class="p-col-12 car-data">
+                <div class="car-title">{{car.brand}}</div>
+                <div class="car-subtitle">{{car.year}} | {{car.color}}</div>
+
+                <div class="car-buttons">
+                  <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
+                  <button pButton type="button" class="ui-button-secondary" icon="pi pi-star"></button>
+                  <button pButton type="button" class="ui-button-secondary" icon="pi pi-cog"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+      <!-- Card c/ informacoes do Banco -->
+      <!-- <div class="card-deck">
+        <div class="card">
+          <img src="../../../assets/Imagens/administrativo/karate-card-01.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Atletas Cadastrados</h5>
+            <div class="card-text">
+
+              <ul>
+                <li>Total: 50</li>
+                <li>Homens: 31</li>
+                <li>Mulheres: 20</li>
+              </ul>
+            </div>
+            <a class="card-text" [routerLink]="['/administrativo/atleta/listar']">
+              <small class="text-muted">
+                Gerenciar
+              </small>
+            </a>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../../../assets/Imagens/administrativo/karate-card-02.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Próximos Campeonatos</h5>
+            <div class="card-text">
+              <ul>
+                <li>OLESC 25/11</li>
+                <li>JOGUINHOS 20/09</li>
+                <li>BRASILEIRO 05/25</li>
+              </ul>
+            </div> -->
+            <!-- <a class="card-text" [routerLink]="['/cadastro', usuarioAutenticado.id]">
+              <small class="text-muted">
+                Gerenciar
+              </small>
+            </a> -->
+          <!-- </div>
+        </div>
+        <div class="card">
+          <img src="../../../assets/Imagens/administrativo/karate-card-03.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Eventos</h5>
+            <div class="card-text">
+              <ul>
+                <li>Feijoada 05/07</li>
+                <li>Exame de Kyu 05/09</li>
+                <li>Exame de DAN 25/12</li>
+              </ul>
+            </div> -->
+            <!-- <a class="card-text" [routerLink]="['/cadastro', usuarioAutenticado.id]">
+              <small class="text-muted">
+                Gerenciar
+              </small>
+            </a> -->
+          <!-- </div>
+        </div> -->
+      <!-- </div> -->
+    </div>
+</div>

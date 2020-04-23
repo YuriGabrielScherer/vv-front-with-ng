@@ -1,0 +1,36 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-s-12">
+    Titulo
+  </div>
+
+  <div class="ui-g-6 ui-s-6 divCentral">
+    <p-listbox
+      [options]="cities"
+      [(ngModel)]="pessoaSelecionada"
+      [multiple]="false"
+      [checkbox]="true"
+      [filter]="true"
+      optionLabel="name"
+      class="listbox"
+      [listStyle]="{ 'max-height': '250px', 'min-width': '200px' }"
+    >
+      <p-header>
+        Selecione a pessoa
+      </p-header>
+    </p-listbox>
+  </div>
+  <div class="ui-g-6 ui-s-6">
+    <p-card header="Dados da Pessoa">
+      <div class="ui-g">
+        <div class="ui-g-6 ui-m-6">Teste</div>
+        <div class="ui-g-6 ui-m-6">Teste</div>
+      </div>
+    </p-card>
+    <p-footer>
+      Footer content here
+    </p-footer>
+  </div>
+  <div class="ui-g-12 ui-m-12">
+    <p-steps [model]="items" [readonly]="false"></p-steps>
+  </div>
+</div>

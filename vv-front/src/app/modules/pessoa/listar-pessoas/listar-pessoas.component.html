@@ -1,0 +1,103 @@
+<div class="ui-g-12 ui-m-10">
+  <p-table #table [columns]="cols" [value]="pessoas" [rows]="rows">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th
+          *ngFor="let col of columns"
+          [pSortableColumn]="col.field"
+          [ngSwitch]="col.header"
+        >
+          <ng-template ngSwitchCase="Ação">
+            {{ col.header }}
+          </ng-template>
+
+          <ng-template ngSwitchDefault>
+            {{ col.header }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </ng-template>
+        </th>
+      </tr>
+      <tr>
+        <th *ngFor="let col of columns" [ngSwitch]="col.header">
+          <ng-template ngSwitchCase="Nome">
+            <input
+              pInputText
+              type="text"
+              (input)="table.filter($event.target.value, col.field, 'contains')"
+            />
+          </ng-template>
+
+          <ng-template ngSwitchCase="CPF">
+            <input
+              pInputText
+              type="text"
+              (input)="table.filter($event.target.value, col.field, 'contains')"
+            />
+          </ng-template>
+
+          <ng-template ngSwitchCase="Data Nasc.">
+            <input
+              pInputText
+              type="text"
+              (input)="table.filter($event.target.value, col.field, 'contains')"
+            />
+          </ng-template>
+
+          <ng-template ngSwitchCase="Sexo">
+            <p-dropdown
+              [options]="sexos"
+              [style]="{ width: '100%' }"
+              (onChange)="table.filter($event.value, col.field, 'equals')"
+            ></p-dropdown>
+          </ng-template>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td
+          *ngFor="let col of columns"
+          [ngSwitch]="col.header"
+          class="centerText"
+        >
+          <ng-template ngSwitchCase="CPF">
+            {{ rowData[col.field] | mascaraCpf }}
+          </ng-template>
+
+          <ng-template ngSwitchCase="Data Nasc.">
+            {{ rowData[col.field] | dataNascimento }}
+          </ng-template>
+
+          <ng-template ngSwitchCase="Sexo">
+            {{ rowData[col.field] | sexo }}
+          </ng-template>
+
+          <ng-template ngSwitchCase="Ação">
+            <p-splitButton
+              class="splitButton"
+              label="Ações"
+              icon="pi pi-check"
+              [model]="items"
+            >
+            </p-splitButton>
+          </ng-template>
+
+          <ng-template ngSwitchDefault>
+            {{ rowData[col.field] }}
+          </ng-template>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-paginator
+    [rows]="rows"
+    [totalRecords]="totalRecords"
+    pageLinkSize="3"
+    showCurrentPageReport="true"
+    currentPageReportTemplate="Mostrando {last} de {totalRecords} registros."
+    (onPageChange)="getValuesFromDatabase($event)"
+  >
+  </p-paginator>
+</div>

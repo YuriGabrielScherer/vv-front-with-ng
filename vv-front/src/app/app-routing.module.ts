@@ -1,14 +1,16 @@
-import { CadastroComponent } from './pessoa/cadastro/cadastro.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Componentes
-import { IndexComponent } from './shared/index/index.component';
-import { LoginComponent } from './login/login/login.component';
+import { LoginComponent } from './core/authentication/template/login.component';
+import { IndexComponent } from './modules/index/template/index.component';
 
 // Guards
-import { AuthGuard } from './guards/auth-guard';
-import { PessoaResolver } from './guards/pessoa-resolver';
+import { AuthGuard } from './core/guards/auth-guard';
+import { PessoaResolver } from './core/guards/pessoa-resolver';
+
+// Cadastrar Nova Pessoa
+import { CadastroComponent } from './modules/pessoa/cadastro/cadastro.component';
 
 const routes: Routes = [
   { // Caso vazio, vai para o index
@@ -22,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'administrativo',
-    loadChildren: () => import('./administrativo/administrativo.module').then(m => m.AdministrativoModule),
+    loadChildren: () => import('./modules/administrativo/administrativo.module').then(m => m.AdministrativoModule),
     //canActivate: [AuthGuard],
     //resolve: { pessoa: PessoaResolver }
   },

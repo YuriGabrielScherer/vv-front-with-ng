@@ -1,5 +1,6 @@
-import { AuthInterceptor } from './login/interceptor-auth.service';
-import { PessoaResolver } from './guards/pessoa-resolver';
+import { NgPrimeModule } from './components/ngPrime/ngprime.module';
+import { AuthInterceptor } from './core/interceptors/interceptor-auth.service';
+import { PessoaResolver } from './core/guards/pessoa-resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,19 +10,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { IndexComponent } from './shared/index/index.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { LoginComponent } from './login/login/login.component';
-import { AtletaAlterarComponent } from './atleta/atleta-alterar/atleta-alterar.component';
+import { IndexComponent } from './modules/index/template/index.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { LoginComponent } from './core/authentication/template/login.component';
+import { AtletaAlterarComponent } from './modules/atleta/atleta-alterar/atleta-alterar.component';
 
-import { AdministrativoModule } from './administrativo/administrativo.module';
-import { AppBootstrapModule } from './shared/app-bootstrap/app-bootstrap.module';
-import { PessoaModule } from './pessoa/pessoa.module';
+import { AdministrativoModule } from './modules/administrativo/administrativo.module';
+import { PessoaModule } from './modules/pessoa/pessoa.module';
 import { SharedModule } from './shared/shared.module';
 
-import { AuthGuard } from './guards/auth-guard';
-import { AuthService } from './login/auth.service';
+import { AuthGuard } from './core/guards/auth-guard';
+import { AuthService } from './core/authentication/auth.service';
 
 import { TextMaskModule } from 'angular2-text-mask';
 
@@ -32,18 +31,13 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// NGPrime
-// import { TableModule } from 'primeng/table';
-
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
-    HeaderComponent,
     FooterComponent,
     LoginComponent,
     AtletaAlterarComponent
-
   ],
   imports: [
     BrowserModule,
@@ -51,12 +45,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     AdministrativoModule,
-    AppBootstrapModule,
     BrowserAnimationsModule,
     PessoaModule,
     SharedModule,
     ReactiveFormsModule,
     TextMaskModule,
+
+    // PrimeNG
+    NgPrimeModule,
+
     ModalModule.forRoot(),
     TabsModule.forRoot(),
     ToastrModule.forRoot(
@@ -66,9 +63,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         progressBar: true,
         closeButton: true
       }
-    ),
-    // TableModule
-
+    )
   ],
   providers: [
     AuthService,
