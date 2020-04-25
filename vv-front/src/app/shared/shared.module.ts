@@ -12,7 +12,6 @@ import { CampoControlErroComponent } from './mensagens-formulario/campo-control-
 import { MascaraCpfPipe } from './pipes/mascara-cpf.pipe';
 import { PrimeiroNomePipe } from './pipes/primeiro-nome.pipe';
 import { CorFaixaPipe } from './pipes/cor-faixa.pipe';
-import { DataNascimentoPipe } from './pipes/data-nascimento.pipe';
 import { SexoPipe } from './pipes/sexo.pipe';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { SexoPipe } from './pipes/sexo.pipe';
     MascaraCpfPipe,
     PrimeiroNomePipe,
     CorFaixaPipe,
-    DataNascimentoPipe,
     SexoPipe
   ],
   imports: [
@@ -38,7 +36,6 @@ import { SexoPipe } from './pipes/sexo.pipe';
     MascaraCpfPipe,
     PrimeiroNomePipe,
     CorFaixaPipe,
-    DataNascimentoPipe,
     SexoPipe,
 
     TextMaskModule
