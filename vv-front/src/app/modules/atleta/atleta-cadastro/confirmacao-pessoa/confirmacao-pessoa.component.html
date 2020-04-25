@@ -22,7 +22,7 @@
       <div class="ui-g-6 ui-m-6">Nome: {{ pessoaSelecionada.nome }}</div>
       <div class="ui-g-6 ui-m-6">Data Nascimento: {{ pessoaSelecionada.dataNascimento }}</div>
       <div class="ui-g-6 ui-m-6">CPF: {{ pessoaSelecionada.cpf | mascaraCpf }}</div>
-      <div class="ui-g-6 ui-m-6">Telefone: {{ pessoaSelecionada.telefone }}</div> <!--Criar pipe para telefone-->
+      <div class="ui-g-6 ui-m-6">Telefone: {{ pessoaSelecionada.telefone | mascaraTelefone }}</div> <!--Criar pipe para telefone-->
       <div class="ui-g-6 ui-m-6">E-mail: {{ pessoaSelecionada.email }}</div>
       <div class="ui-g-6 ui-m-6">Sexo: {{ pessoaSelecionada.sexo | sexo }}</div>
       <br>
