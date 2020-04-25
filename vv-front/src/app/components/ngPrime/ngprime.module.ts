@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -17,7 +18,8 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { StepsModule } from 'primeng/steps';
 import { ToastModule } from 'primeng/toast';
-
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ToastModule } from 'primeng/toast';
     CarouselModule,
     ListboxModule,
     CardModule,
-    StepsModule
+    StepsModule,
+    KeyFilterModule,
+    DropdownModule
     // DialogModule
   ],
   exports: [
@@ -55,8 +59,13 @@ import { ToastModule } from 'primeng/toast';
     CarouselModule,
     ListboxModule,
     CardModule,
-    StepsModule
+    StepsModule,
+    KeyFilterModule,
+    DropdownModule
     // DialogModule
+  ],
+  providers: [
+    MessageService
   ]
 })
 export class NgPrimeModule { }

@@ -96,8 +96,8 @@ export class AtletaAlterarComponent implements OnInit {
     atleta.confederacao = this.formulario.get('confederacao').value;
     atleta.federacao = this.formulario.get('federacao').value;
     atleta.idGrau = this.formulario.get('idGrau').value;
-    atleta.idPessoa = this.formulario.get('idPessoa').value;
-    atleta.idPessoaCompetitiva = this.formulario.get('idPessoaCompetitiva').value;
+    // atleta.idPessoa = this.formulario.get('idPessoa').value;
+    // atleta.idPessoaCompetitiva = this.formulario.get('idPessoaCompetitiva').value;
     atleta.dataInicio = this.formulario.get('dataInicio').value;
 
     // Atleta

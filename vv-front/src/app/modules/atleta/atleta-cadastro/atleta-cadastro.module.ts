@@ -28,9 +28,6 @@ import { AtletaFormComponent } from './atleta-form/atleta-form.component';
   exports: [
     AtletaComponent,
     ConfirmacaoPessoaComponent
-  ],
-  providers: [
-    AtletaService
   ]
 })
 export class AtletaCadastroModule { }

@@ -1,1 +1,41 @@
-<p>atleta-form works!</p>
+<div class="ui-g-6 ui-m-6">
+  <div class="divFormulario">
+    <h5>Dados do Atleta</h5>
+    <form>
+      <div class="ui-g-6">
+        <input id="nomeAtleta" name="nomeAtleta" type="text" pInputText [(ngModel)]="pessoaSelecionada.nome" />
+      </div>
+      <div class="ui-g-6">
+        <input id="cpfAtleta" name="cpfAtleta" type="text" pInputText [(ngModel)]="pessoaSelecionada.cpf" />
+      </div>
+      <div class="ui-g-6">
+        <input id="endereco" size="" type="text" pInputText placeholder="Endereço"/>
+      </div>
+      <div class="ui-g-6">
+        <p-dropdown [options]="graduacoes" name="graduacao" [(ngModel)]="graduacaoSelecionada"></p-dropdown>
+      </div>
+      <div class="ui-g-6">
+        <input id="fck" size="5" pKeyFilter="pint" type="text" pInputText placeholder="Cadasto FCK"/>
+      </div>
+      <div class="ui-g-6">
+        <input id="cbk" size="5" pKeyFilter="pint" type="text" pInputText placeholder="Cadastro CBK"/>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="ui-g-6 ui-m-6">
+  <div class="divFormulario">
+    <h5>Dados do Responsável</h5>
+    <form>
+      <div class="ui-g-6">
+        <input id="nomeResponsavel" size="30" type="text" pInputText placeholder="Nome"/>
+      </div>
+      <div class="ui-g-6">
+        <input id="telefoneResponsavel" size="30" type="text" pInputText placeholder="Telefone"/>
+      </div>
+      <div class="ui-g-6">
+        <input id="cpfResponsavel" size="" type="text" pInputText placeholder="CPF"/>
+      </div>
+    </form>
+  </div>
+</div>

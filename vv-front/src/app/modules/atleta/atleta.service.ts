@@ -8,13 +8,14 @@ import { PessoaService } from './../pessoa/pessoa.service';
 
 import { Atleta } from './../../shared/model/atleta';
 import { Pessoa } from '../../shared/model/pessoa';
+import { Subscriber, Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AtletaService extends CrudService<Atleta> {
 
-  private pessoaContext: Pessoa;
+  private behaviosSubject$: BehaviorSubject<Pessoa> = new BehaviorSubject<Pessoa>(null);
 
   constructor(
     protected http: HttpClient,
@@ -37,10 +38,10 @@ export class AtletaService extends CrudService<Atleta> {
   }
 
   setPessoaContext(payload: Pessoa) {
-    this.pessoaContext = payload;
+    this.behaviosSubject$.next(payload);
   }
 
-  getPessoaContext(): Pessoa {
-    return this.pessoaContext ?? null;
+  getPessoaContext(): Observable<Pessoa> {
+    return this.behaviosSubject$.asObservable();
   }
 }

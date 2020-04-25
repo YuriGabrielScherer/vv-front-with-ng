@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Pessoa } from './../../../../shared/model/pessoa';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AtletaService } from '../../atleta.service';
 
 import { MenuItem } from 'primeng/api/menuitem';
 import { MessageService } from 'primeng/api';
+import { Subscription, Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-atleta',
@@ -12,12 +15,15 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./atleta.component.scss'],
   preserveWhitespaces: true
 })
-export class AtletaComponent implements OnInit {
+export class AtletaComponent implements OnInit, OnDestroy {
 
   steps: MenuItem[];
 
   // Titulo da pagina
   titulo = 'Primeiro, escolha uma pessoa para continuar';
+
+  private destroy$: Subject<boolean> = new Subject<boolean>();
+  pessoaSelecionada: Pessoa;
 
   constructor(
     private router: Router,
@@ -27,6 +33,21 @@ export class AtletaComponent implements OnInit {
 
   ngOnInit() {
     this.criarSteps();
+
+    this.atletaService.getPessoaContext()
+      .pipe(
+        takeUntil(
+          this.destroy$
+        )
+      )
+      .subscribe((pessoa: Pessoa) => {
+        this.pessoaSelecionada = pessoa;
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(false);
+    this.destroy$.unsubscribe();
   }
 
   private criarSteps() {
@@ -41,27 +62,49 @@ export class AtletaComponent implements OnInit {
       {
         label: 'Atleta',
         command: () => {
-          if (this.atletaService.getPessoaContext() != null) {
-            this.router.navigate(['/administrativo/atleta/cadastrar/atleta']);
+          if (this.navegarStep('atleta')) {
             this.titulo = 'Entre com os dados do Atleta';
-          } else {
-            this.addSingle();
           }
         }
       },
       {
         label: 'Confirmação',
-        routerLink: ['/administrativo/atleta/cadastrar/confirmacao'],
         command: () => {
-          this.titulo = 'Confirme os dados para cadastro';
+          if (this.navegarStep('confirmacao')) {
+            this.titulo = 'Confirme os dados para cadastro';
+          }
         }
       }
     ];
   }
 
-  addSingle() {
-    this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
-}
+  private navegarStep(rota: string): boolean {
+    if (this.pessoaSelecionada != null) {
+      this.router.navigate(
+        [`/administrativo/atleta/cadastrar/${rota}`],
+        { state: { pessoa: this.pessoaSelecionada } }
+      );
+      return true;
+    }
+
+    this.toastErroMudarStep();
+    return false;
+
+  }
+
+  private toastErroMudarStep() {
+    this.messageService.add(
+      {
+        severity: 'warn',
+        summary: 'Cadastro de Atletas',
+        detail: 'Por favor, selecione uma pessoa antes de continuar.'
+      }
+    );
+  }
+
+  private getPessoaContext() {
+
+  }
 
 
 }
