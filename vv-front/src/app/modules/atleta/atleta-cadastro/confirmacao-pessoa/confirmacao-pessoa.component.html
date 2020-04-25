@@ -1,0 +1,42 @@
+<div class="ui-g-6 ui-m-6">
+  <p-listbox
+    [options]="pessoas"
+    [(ngModel)]="pessoaSelecionada"
+    [multiple]="false"
+    [checkbox]="true"
+    [filter]="true"
+    optionLabel="nome"
+    class="listbox"
+    [listStyle]="{ 'max-height': '250px', 'min-width': '200px' }"
+    (onClick)="selecionouPessoa()">
+
+    <p-header>
+      Selecione uma pessoa
+    </p-header>
+  </p-listbox>
+</div>
+
+<div class="ui-g-6 ui-m-6">
+  <p-card header="{{ tituloCard }}" *ngIf="pessoaSelecionada != undefined">
+    <div class="ui-g">
+      <div class="ui-g-6 ui-m-6">Nome: {{ pessoaSelecionada.nome }}</div>
+      <div class="ui-g-6 ui-m-6">Data Nascimento: {{ pessoaSelecionada.dataNascimento }}</div>
+      <div class="ui-g-6 ui-m-6">CPF: {{ pessoaSelecionada.cpf | mascaraCpf }}</div>
+      <div class="ui-g-6 ui-m-6">Telefone: {{ pessoaSelecionada.telefone }}</div> <!--Criar pipe para telefone-->
+      <div class="ui-g-6 ui-m-6">E-mail: {{ pessoaSelecionada.email }}</div>
+      <div class="ui-g-6 ui-m-6">Sexo: {{ pessoaSelecionada.sexo | sexo }}</div>
+      <br>
+      <div class="ui-g-6 ui-m-6">
+        <button
+          pButton
+          type="button"
+          icon="pi pi-user-edit"
+          class="ui-button-warning"
+          iconPos="left"
+          label="Alterar"
+          (click)="alterarPessoa()">
+        </button>
+      </div>
+    </div>
+  </p-card>
+</div>

@@ -1,0 +1,13 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-s-12 divTitulo">
+    <h5>{{ titulo }}</h5>
+  </div>
+
+  <div class="ui-g-12 ui-g-nopad">
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="ui-g-12 ui-m-12">
+    <p-steps [model]="steps" [readonly]="false"></p-steps>
+  </div>
+</div>

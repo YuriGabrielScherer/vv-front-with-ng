@@ -1,0 +1,6 @@
+:host {
+  // Ajustando Width do listbox
+  ::ng-deep .ui-listbox {
+    min-width: 100% !important;
+  }
+}
