@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { MessagesHandlerService } from './../../../../core/service/messages/messages-handler.service';
 
-import { Pessoa } from './../../../pessoa/pessoa';
+import { Pessoa } from '../../../../shared/model/pessoa';
 
 @Component({
   selector: 'app-confirmacao-pessoa',

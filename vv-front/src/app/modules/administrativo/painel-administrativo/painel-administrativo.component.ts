@@ -2,7 +2,7 @@ import { take } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { Pessoa } from '../../pessoa/pessoa';
+import { Pessoa } from '../../../shared/model/pessoa';
 
 @Component({
   selector: 'app-painel-administrativo',

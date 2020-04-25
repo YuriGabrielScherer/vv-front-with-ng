@@ -16,7 +16,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { StepsModule } from 'primeng/steps';
-
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -25,6 +25,7 @@ import { StepsModule } from 'primeng/steps';
   imports: [
     CommonModule,
 
+    ToastModule,
     ButtonModule,
     TableModule,
     PaginatorModule,
@@ -42,6 +43,7 @@ import { StepsModule } from 'primeng/steps';
   ],
   exports: [
     TableModule,
+    ToastModule,
     ButtonModule,
     PaginatorModule,
     SplitButtonModule,

@@ -3,7 +3,7 @@ import { EMPTY } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { Pessoa } from '../../pessoa';
+import { Pessoa } from '../../../../shared/model/pessoa';
 import { Component, OnInit } from '@angular/core';
 
 import { ValidacoesFormService } from '../../../../core/service/form/validacoes-form.service';
@@ -34,7 +34,8 @@ export class CadastroFormComponent implements OnInit {
   spinner = false;
 
   // Pessoa a ser cadastrada
-  pessoa: Pessoa;
+  pessoa: Pessoa = new Pessoa();
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -130,15 +131,10 @@ export class CadastroFormComponent implements OnInit {
 
   private preparaSubmit(form: FormGroup): boolean {
     if (form.valid && form.dirty) {
-      // Exibindo Spinner de carregamento
       this.spinner = true;
       return true;
     }
     return false;
-  }
-
-  private roteamento() {
-
   }
 
   private tratarPessoa(formGroup: FormGroup): Pessoa {
@@ -148,7 +144,7 @@ export class CadastroFormComponent implements OnInit {
     this.pessoa.senha = formGroup.get('senha').value;
     this.pessoa.sexo = formGroup.get('sexo').value;
     this.pessoa.login = formGroup.get('login').value;
-    this.pessoa.dataNascimento = this.validacaoForm.transformarDataToBanco(formGroup.get('dataNascimento').value);
+    this.pessoa.dataNascimento = formGroup.get('dataNascimento').value;
 
     // Tratando o CPF - Retirando a mascara
     const cpf: string = formGroup.get('cpf').value.replace(/[^0-9]+/g, '');
@@ -231,7 +227,7 @@ export class CadastroFormComponent implements OnInit {
             cpf: this.pessoa.cpf,
             email: this.pessoa.email,
             telefone: this.pessoa.telefone,
-            dataNascimento: this.validacaoForm.transformarDataToSite(this.pessoa.dataNascimento),
+            dataNascimento: this.pessoa.dataNascimento,
             sexo: this.pessoa.sexo,
             senha: 12345,
             login: 1

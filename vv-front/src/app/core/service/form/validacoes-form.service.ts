@@ -154,22 +154,4 @@ export class ValidacoesFormService {
     }
     return !campo.valid && campo.touched;
   }
-
-  transformarDataToBanco(data: string) {
-    // Transformar no formato yyyy-mm-dd, ja que o backend trabalha assim.
-    const dia = data.slice(0, 2);
-    const mes = data.slice(3, 5);
-    const ano = data.slice(6, 10);
-    const dataN = `${ano}-${mes}-${dia}`;
-    return dataN;
-  }
-
-  transformarDataToSite(data: string) {
-    // Transformar para o formato dd-mm-yyyy, ja que o front trabalha assim
-    const ano = data.slice(0, 4);
-    const mes = data.slice(5, 7);
-    const dia = data.slice(8, 10);
-    const dataN = `${dia}-${mes}-${ano}`;
-    return dataN;
-  }
 }

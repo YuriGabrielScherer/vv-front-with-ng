@@ -2,7 +2,7 @@ import { MenuItem } from 'primeng/api/menuitem';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Pessoa } from '../../pessoa/pessoa';
+import { Pessoa } from '../../../shared/model/pessoa';
 import { Title } from '@angular/platform-browser';
 
 

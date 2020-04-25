@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 
 import { CrudService } from '../../core/http/crud-service';
-import { Pessoa } from './pessoa';
+import { Pessoa } from '../../shared/model/pessoa';
 
 
 @Injectable({

@@ -10,11 +10,13 @@ import { ConfirmacaoPessoaComponent } from './confirmacao-pessoa/confirmacao-pes
 import { AtletaComponent } from './template/atleta.component';
 
 import { AtletaService } from './../atleta.service';
+import { AtletaFormComponent } from './atleta-form/atleta-form.component';
 
 @NgModule({
   declarations: [
     AtletaComponent,
-    ConfirmacaoPessoaComponent
+    ConfirmacaoPessoaComponent,
+    AtletaFormComponent
   ],
   imports: [
     CommonModule,

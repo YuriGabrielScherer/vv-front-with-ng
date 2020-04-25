@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { map, take } from 'rxjs/operators';
 
 import { PessoaService } from './../../modules/pessoa/pessoa.service';
-import { Pessoa } from './../../modules/pessoa/pessoa';
+import { Pessoa } from '../../shared/model/pessoa';
 
 @Injectable({
   providedIn: 'root'

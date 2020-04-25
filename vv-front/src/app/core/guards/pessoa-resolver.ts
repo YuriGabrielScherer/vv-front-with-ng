@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { Pessoa } from './../../modules/pessoa/pessoa';
+import { Pessoa } from '../../shared/model/pessoa';
 import { AuthService } from '../authentication/auth.service';
 
 @Injectable(

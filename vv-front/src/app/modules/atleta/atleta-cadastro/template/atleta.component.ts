@@ -1,14 +1,10 @@
-import { MenuItem } from 'primeng/api/menuitem';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { Atleta } from '../../../../shared/model/atleta';
-import { Pessoa } from '../../../pessoa/pessoa';
-import { PessoaService } from '../../../pessoa/pessoa.service';
-import { ToastService } from '../../../../core/service/toast/toast.service';
 import { AtletaService } from '../../atleta.service';
-import { ValidacoesFormService } from '../../../../core/service/form/validacoes-form.service';
+
+import { MenuItem } from 'primeng/api/menuitem';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-atleta',
@@ -24,7 +20,9 @@ export class AtletaComponent implements OnInit {
   titulo = 'Primeiro, escolha uma pessoa para continuar';
 
   constructor(
-    private route: Router
+    private router: Router,
+    private atletaService: AtletaService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -42,9 +40,13 @@ export class AtletaComponent implements OnInit {
       },
       {
         label: 'Atleta',
-        routerLink: ['/administrativo/atleta/cadastrar/atleta'],
         command: () => {
-          this.titulo = 'Entre com os dados do Atleta';
+          if (this.atletaService.getPessoaContext() != null) {
+            this.router.navigate(['/administrativo/atleta/cadastrar/atleta']);
+            this.titulo = 'Entre com os dados do Atleta';
+          } else {
+            this.addSingle();
+          }
         }
       },
       {
@@ -56,6 +58,10 @@ export class AtletaComponent implements OnInit {
       }
     ];
   }
+
+  addSingle() {
+    this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
+}
 
 
 }

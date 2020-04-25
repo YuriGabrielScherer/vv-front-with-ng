@@ -7,7 +7,7 @@ import { CrudService } from '../../core/http/crud-service';
 import { PessoaService } from './../pessoa/pessoa.service';
 
 import { Atleta } from './../../shared/model/atleta';
-import { Pessoa } from '../pessoa/pessoa';
+import { Pessoa } from '../../shared/model/pessoa';
 
 @Injectable({
   providedIn: 'root'

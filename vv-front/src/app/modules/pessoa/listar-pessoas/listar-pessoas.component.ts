@@ -2,7 +2,7 @@ import { take, finalize, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Pessoa } from '../pessoa';
+import { Pessoa } from '../../../shared/model/pessoa';
 import { TipoOrdenacao } from './../../../shared/pageable/TipoOrdenacao.enum';
 import { PaginacaoResolverService } from '../../../shared/pageable/paginacaoResolver.service';
 import { MessagesHandlerService } from '../../../core/service/messages/messages-handler.service';
