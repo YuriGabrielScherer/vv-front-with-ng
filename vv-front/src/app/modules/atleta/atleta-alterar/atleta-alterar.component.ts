@@ -51,37 +51,8 @@ export class AtletaAlterarComponent implements OnInit {
   }
 
   onSubmit() {
-    // Validando Formulario
-    if (this.formulario.valid) {
-      this.atletaService.alterarAtleta(this.criarObjeto()).subscribe(
-        (success) => {
-          // Mensagem
-          this.toast.toastSuccess('Sucesso!', 'Atleta alterado com sucesso!');
 
-          // Resposta
-          this.onClose();
 
-        }, (error) => {
-          // Tratamento de Erros
-          switch (error['status']) {
-            // Erro Banco
-            case 400: {
-              this.toast.toastErroBanco();
-              break;
-            }
-            // Usuário não encontrado.
-            case 404: {
-              this.toast.toastError('Não encontrado!',
-                'Atleta não encontrado no banco de dados. Atualize a página e tente novamente.');
-              break;
-            }
-          }
-        }, () => {
-          // Fechando o modal de Alteracao
-          this.onClose();
-        }
-      );
-    }
   }
 
   onDelete() {

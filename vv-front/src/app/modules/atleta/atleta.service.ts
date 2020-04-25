@@ -2,44 +2,27 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
 
-import { VwAtletaPessoa } from './../../shared/model/vwAtletaPessoa';
-import { CrudService } from '../../core/http/crud-service';
-import { Atleta } from './../../shared/model/atleta';
-
 import { environment } from './../../../environments/environment';
+import { CrudService } from '../../core/http/crud-service';
+import { PessoaService } from './../pessoa/pessoa.service';
+
+import { Atleta } from './../../shared/model/atleta';
+import { Pessoa } from '../pessoa/pessoa';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AtletaService extends CrudService<Atleta> {
 
+  private pessoaContext: Pessoa;
+
   constructor(
-    protected http: HttpClient
+    protected http: HttpClient,
+    private pessoaService: PessoaService
   ) {
 
     // Construtor do CrudService
     super(http, `${environment.API}atleta`);
-  }
-
-  getAtletasPessoas() {
-    return this.http.get<VwAtletaPessoa[]>(`${environment.API} atleta`)
-      .pipe(
-        take(1)
-      );
-  }
-
-  getAtletaPessoaById(idAtleta: number) {
-    return this.http.get<VwAtletaPessoa>(`${environment.API}atleta/${idAtleta}`)
-      .pipe(
-        take(1)
-      );
-  }
-
-  alterarAtleta(atleta: VwAtletaPessoa) {
-    return this.http.post<VwAtletaPessoa>(`${environment.API}atleta`, atleta)
-      .pipe(
-        take(1)
-      );
   }
 
   cadastrarFck() {
@@ -47,5 +30,17 @@ export class AtletaService extends CrudService<Atleta> {
       .pipe(
         take(1)
       );
+  }
+
+  getPessoasCadastroAtleta() {
+    return this.pessoaService.retornarPessoasCadastroAtleta();
+  }
+
+  setPessoaContext(payload: Pessoa) {
+    this.pessoaContext = payload;
+  }
+
+  getPessoaContext(): Pessoa {
+    return this.pessoaContext ?? null;
   }
 }

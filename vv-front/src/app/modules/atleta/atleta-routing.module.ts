@@ -1,9 +1,8 @@
-import { AtletaFuncoesComponent } from './atleta-funcoes/atleta-funcoes.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Resolve } from '@angular/router';
 
-import { AtletaListarComponent } from './atleta-listar/atleta-listar.component';
-import { AtletaComponent } from './atleta-cadastro/atleta.component';
+import { AtletaComponent } from './atleta-cadastro/template/atleta.component';
+import { AtletaFuncoesComponent } from './atleta-funcoes/atleta-funcoes.component';
 
 const routes: Routes = [
   {
@@ -12,11 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'cadastrar',
-    component: AtletaComponent
-  },
-  {
-    path: 'listar',
-    component: AtletaListarComponent
+    component: AtletaComponent,
+    loadChildren: () => import('../atleta/atleta-cadastro/atleta-cadastro.module').then(m => m.AtletaCadastroModule),
   },
   {
     path: 'funcoes',

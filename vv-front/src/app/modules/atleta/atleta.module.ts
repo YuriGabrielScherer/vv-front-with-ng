@@ -1,27 +1,26 @@
-import { NgPrimeModule } from './../../components/ngPrime/ngprime.module';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { SharedModule } from './../../shared/shared.module';
 import { AtletaRoutingModule } from './atleta-routing.module';
+import { AtletaCadastroModule } from './atleta-cadastro/atleta-cadastro.module';
+import { NgPrimeModule } from './../../components/ngPrime/ngprime.module';
 
 import { AtletaService } from './atleta.service';
-import { AtletaAlterarService } from './atleta-alterar/atleta-alterar.service';
+import { PessoaService } from './../pessoa/pessoa.service';
 
-import { AtletaComponent } from './atleta-cadastro/atleta.component';
-import { AtletaListarComponent } from './atleta-listar/atleta-listar.component';
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AtletaFuncoesComponent } from './atleta-funcoes/atleta-funcoes.component';
 
+
 @NgModule({
   declarations: [
-    AtletaComponent,
-    AtletaListarComponent,
     AtletaFuncoesComponent,
   ],
   imports: [
+    AtletaCadastroModule,
     CommonModule,
     AtletaRoutingModule,
     SharedModule,
@@ -30,12 +29,9 @@ import { AtletaFuncoesComponent } from './atleta-funcoes/atleta-funcoes.componen
     NgPrimeModule,
     CollapseModule.forRoot()
   ],
-  exports: [
-    AtletaComponent,
-  ],
   providers: [
     AtletaService,
-    AtletaAlterarService
+    PessoaService
   ]
 
 })

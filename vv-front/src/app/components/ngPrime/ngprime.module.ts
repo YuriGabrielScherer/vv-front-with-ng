@@ -13,7 +13,7 @@ import { InputTextModule } from 'primeng/inputtext';
 // import { DialogModule } from 'primeng/dialog';
 import { CarouselModule } from 'primeng/carousel';
 import { ListboxModule } from 'primeng/listbox';
-
+import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { StepsModule } from 'primeng/steps';
 
@@ -25,6 +25,7 @@ import { StepsModule } from 'primeng/steps';
   imports: [
     CommonModule,
 
+    ButtonModule,
     TableModule,
     PaginatorModule,
     SplitButtonModule,
@@ -41,6 +42,7 @@ import { StepsModule } from 'primeng/steps';
   ],
   exports: [
     TableModule,
+    ButtonModule,
     PaginatorModule,
     SplitButtonModule,
     MenuModule,
