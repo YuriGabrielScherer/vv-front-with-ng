@@ -13,6 +13,7 @@ import { MascaraCpfPipe } from './pipes/mascara-cpf.pipe';
 import { PrimeiroNomePipe } from './pipes/primeiro-nome.pipe';
 import { CorFaixaPipe } from './pipes/cor-faixa.pipe';
 import { SexoPipe } from './pipes/sexo.pipe';
+import { MascaraTelefonePipe } from './pipes/mascara-telefone.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SexoPipe } from './pipes/sexo.pipe';
     // Pipes
     MascaraCpfPipe,
     PrimeiroNomePipe,
+    MascaraTelefonePipe,
     CorFaixaPipe,
     SexoPipe
   ],
@@ -34,6 +36,7 @@ import { SexoPipe } from './pipes/sexo.pipe';
 
     // Pipes
     MascaraCpfPipe,
+    MascaraTelefonePipe,
     PrimeiroNomePipe,
     CorFaixaPipe,
     SexoPipe,
