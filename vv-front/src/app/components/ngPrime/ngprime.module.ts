@@ -20,6 +20,8 @@ import { StepsModule } from 'primeng/steps';
 import { ToastModule } from 'primeng/toast';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { DropdownModule } from 'primeng/dropdown';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { DropdownModule } from 'primeng/dropdown';
     CardModule,
     StepsModule,
     KeyFilterModule,
-    DropdownModule
+    DropdownModule,
+    MessagesModule,
+    MessageModule,
     // DialogModule
   ],
   exports: [
@@ -61,7 +65,9 @@ import { DropdownModule } from 'primeng/dropdown';
     CardModule,
     StepsModule,
     KeyFilterModule,
-    DropdownModule
+    DropdownModule,
+    MessagesModule,
+    MessageModule,
     // DialogModule
   ],
   providers: [

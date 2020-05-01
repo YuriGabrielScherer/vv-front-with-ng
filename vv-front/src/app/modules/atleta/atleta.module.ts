@@ -1,3 +1,4 @@
+import { AssociacaoService } from './../associacao/associacao.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -31,7 +32,8 @@ import { AtletaFuncoesComponent } from './atleta-funcoes/atleta-funcoes.componen
   ],
   providers: [
     AtletaService,
-    PessoaService
+    PessoaService,
+    AssociacaoService
   ]
 
 })

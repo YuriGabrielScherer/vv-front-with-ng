@@ -9,14 +9,15 @@ import { SharedModule } from './../../../shared/shared.module';
 import { ConfirmacaoPessoaComponent } from './confirmacao-pessoa/confirmacao-pessoa.component';
 import { AtletaComponent } from './template/atleta.component';
 
-import { AtletaService } from './../atleta.service';
 import { AtletaFormComponent } from './atleta-form/atleta-form.component';
+import { ConfirmacaoCadastroComponent } from './confirmacao-cadastro/confirmacao-cadastro.component';
 
 @NgModule({
   declarations: [
     AtletaComponent,
     ConfirmacaoPessoaComponent,
-    AtletaFormComponent
+    AtletaFormComponent,
+    ConfirmacaoCadastroComponent
   ],
   imports: [
     CommonModule,

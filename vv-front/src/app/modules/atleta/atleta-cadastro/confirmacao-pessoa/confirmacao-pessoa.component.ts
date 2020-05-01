@@ -1,7 +1,7 @@
-import { AtletaService } from './../../atleta.service';
 import { Component, OnInit } from '@angular/core';
 
 import { MessagesHandlerService } from './../../../../core/service/messages/messages-handler.service';
+import { AtletaService } from './../../atleta.service';
 
 import { Pessoa } from '../../../../shared/model/pessoa';
 
@@ -12,7 +12,7 @@ import { Pessoa } from '../../../../shared/model/pessoa';
 })
 export class ConfirmacaoPessoaComponent implements OnInit {
 
-  tituloCard = 'a';
+  tituloCard;
 
   pessoas: Pessoa[];
   pessoaSelecionada: Pessoa;

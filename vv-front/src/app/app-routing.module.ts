@@ -30,7 +30,8 @@ const routes: Routes = [
   },
   {
     path: 'novaPessoa', component: CadastroComponent
-  }
+  },
+  { path: 'associacao', loadChildren: () => import('./modules/associacao/associacao.module').then(m => m.AssociacaoModule) }
 
 ];
 
