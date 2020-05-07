@@ -1,3 +1,4 @@
+import { AtletaService } from './../atleta.service';
 import { ConfirmacaoCadastroComponent } from './confirmacao-cadastro/confirmacao-cadastro.component';
 import { Routes, RouterModule, CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, Navigation, ActivatedRoute } from '@angular/router';
 import { NgModule, Injectable } from '@angular/core';
@@ -13,6 +14,7 @@ export class AtletaCadastroGuard implements CanActivate {
   constructor(
     private router: Router,
     private messageService: MessageService,
+    private atletaService: AtletaService
   ) { }
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -20,7 +22,7 @@ export class AtletaCadastroGuard implements CanActivate {
   ): Observable<boolean> | boolean {
     const navigation = this.router.getCurrentNavigation();
 
-    if (navigation.extras.state === undefined || navigation.extras.state.pessoa === undefined) {
+    if (this.atletaService.getPessoaContext() === null) {
       this.messageService.add({
         severity: 'warn',
         summary: 'Cadastro de Atletas',
@@ -40,12 +42,11 @@ export class ConfirmacaoCadastroGuard implements CanActivate {
   constructor(
     private router: Router,
     private messageService: MessageService,
+    private atletaService: AtletaService
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const navigation = this.router.getCurrentNavigation();
-    console.log(navigation);
-    if (navigation.extras.state === undefined || navigation.extras.state.atleta === undefined) {
+    if (this.atletaService.getPessoaContext() === null || this.atletaService.getAtletaContext() === null) {
       this.messageService.add({
         severity: 'warn',
         summary: 'Cadastro de Atletas',

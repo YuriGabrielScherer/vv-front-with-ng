@@ -14,7 +14,7 @@ import { CadastroComponent } from './modules/pessoa/cadastro/cadastro.component'
 
 const routes: Routes = [
   { // Caso vazio, vai para o index
-    path: '', pathMatch: 'full', redirectTo: 'index'
+    path: '', pathMatch: 'full', redirectTo: 'administrativo'
   },
   {
     path: 'index', component: IndexComponent
@@ -30,8 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'novaPessoa', component: CadastroComponent
-  },
-  { path: 'associacao', loadChildren: () => import('./modules/associacao/associacao.module').then(m => m.AssociacaoModule) }
+  }
 
 ];
 

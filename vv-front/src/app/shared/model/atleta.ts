@@ -1,8 +1,11 @@
 export class Atleta {
   idAtleta: number;
-  idGrau: number;
+  grau: number;
+  idAssociacao: number;
+  cpfPessoa: number;
 
   dataInicio: string;
+  endereco: string;
   federacao: number;
   confederacao: number;
   nomeResponsavel: string;

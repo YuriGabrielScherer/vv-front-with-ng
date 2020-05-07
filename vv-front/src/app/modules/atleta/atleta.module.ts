@@ -1,4 +1,3 @@
-import { AssociacaoService } from './../associacao/associacao.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -10,6 +9,7 @@ import { NgPrimeModule } from './../../components/ngPrime/ngprime.module';
 
 import { AtletaService } from './atleta.service';
 import { PessoaService } from './../pessoa/pessoa.service';
+import { AssociacaoService } from './../associacao/associacao.service';
 
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';

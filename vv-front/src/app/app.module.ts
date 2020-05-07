@@ -1,6 +1,3 @@
-import { NgPrimeModule } from './components/ngPrime/ngprime.module';
-import { AuthInterceptor } from './core/interceptors/interceptor-auth.service';
-import { PessoaResolver } from './core/guards/pessoa-resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,11 +6,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgPrimeModule } from './components/ngPrime/ngprime.module';
+import { AuthInterceptor } from './core/interceptors/interceptor-auth.service';
+import { PessoaResolver } from './core/guards/pessoa-resolver';
 
 import { IndexComponent } from './modules/index/template/index.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { LoginComponent } from './core/authentication/template/login.component';
-import { AtletaAlterarComponent } from './modules/atleta/atleta-alterar/atleta-alterar.component';
 
 import { AdministrativoModule } from './modules/administrativo/administrativo.module';
 import { PessoaModule } from './modules/pessoa/pessoa.module';
@@ -37,7 +36,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     IndexComponent,
     FooterComponent,
     LoginComponent,
-    AtletaAlterarComponent
   ],
   imports: [
     BrowserModule,
@@ -71,9 +69,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PessoaResolver,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    AtletaAlterarComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

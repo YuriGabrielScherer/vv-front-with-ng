@@ -1,7 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 import { AtletaService } from '../../atleta.service';
 
@@ -17,43 +15,23 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./atleta.component.scss'],
   preserveWhitespaces: true
 })
-export class AtletaComponent implements OnInit, OnDestroy {
+export class AtletaComponent implements OnInit {
 
   steps: MenuItem[];
 
-  private destroy$: Subject<boolean> = new Subject<boolean>();
-  private pessoaSelecionada: Pessoa;
+  private pessoa: Pessoa;
   private atleta: Atleta;
 
   constructor(
     private router: Router,
     private atletaService: AtletaService,
-    private messageService: MessageService,
-    private route: ActivatedRoute
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
     this.criarSteps();
-
-    this.atletaService.getPessoaContext()
-      .pipe(
-        takeUntil(this.destroy$)
-      ).subscribe((pessoa: Pessoa) => {
-        this.pessoaSelecionada = pessoa;
-      });
-
-    this.atletaService.getAtletaContext()
-      .pipe(
-        takeUntil(this.destroy$)
-      ).subscribe((atleta: Atleta) => {
-        this.atleta = atleta;
-      });
   }
 
-  ngOnDestroy() {
-    this.destroy$.next(false);
-    this.destroy$.unsubscribe();
-  }
 
   private criarSteps() {
     this.steps = [
@@ -77,25 +55,19 @@ export class AtletaComponent implements OnInit, OnDestroy {
   }
 
   private navegarStep(rota: string) {
-    console.log(this.route);
     switch (rota) {
       case 'atleta': {
-        if (this.pessoaSelecionada != null) {
-          this.router.navigate(
-            ['/administrativo/atleta/cadastrar/atleta'],
-            { state: { pessoa: this.pessoaSelecionada } }
-          );
+        if (this.atletaService.getPessoaContext() !== null) {
+          console.log('entrei no if');
+          this.router.navigateByUrl('/administrativo/atleta/cadastrar/atleta');
         } else {
           this.toastErroMudarStep('Por favor, selecione uma pessoa antes de continuar.');
         }
         break;
       }
       case 'confirmacao': {
-        if (this.pessoaSelecionada != null && this.atleta != null) {
-          this.router.navigate(
-            ['/administrativo/atleta/cadastrar/confirmacao'],
-            { state: { atleta: this.atleta } }
-          );
+        if (this.atletaService.getAtletaContext() !== null && this.atletaService.getPessoaContext() !== null) {
+          this.router.navigateByUrl('/administrativo/atleta/cadastrar/confirmacao');
         } else {
           this.toastErroMudarStep('Por favor, selecione um atleta antes de continuar.');
         }

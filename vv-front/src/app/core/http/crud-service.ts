@@ -41,7 +41,8 @@ export class CrudService<Type> {
 
   // Metodo Publico para salvar
   save(record: Type) {
-    // Conferindo Update ou Create
+    // Conferindo Update ou Create-
+    // tslint:disable-next-line: no-string-literal
     if (record['id']) {
       return this.update(record);
     }

@@ -24,11 +24,13 @@ const routes: Routes = [
       {
         path: 'pessoa',
         loadChildren: () => import('../pessoa/pessoa.module').then(m => m.PessoaModule)
+      },
+      {
+        path: 'associacao',
+        loadChildren: () => import('./../associacao/associacao.module').then(m => m.AssociacaoModule)
       }
-
     ]
   }
-
 ];
 
 @NgModule({

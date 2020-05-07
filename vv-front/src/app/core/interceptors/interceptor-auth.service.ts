@@ -8,7 +8,6 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-
     if (sessionStorage.getItem('login') && sessionStorage.getItem('token')) {
       req = req.clone({
         setHeaders: {

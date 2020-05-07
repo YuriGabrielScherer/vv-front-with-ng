@@ -18,8 +18,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class AtletaService extends CrudService<Atleta> {
 
-  private behaviosSubjectPessoa$: BehaviorSubject<Pessoa> = new BehaviorSubject<Pessoa>(null);
-  private behaviosSubjectAtleta$: BehaviorSubject<Atleta> = new BehaviorSubject<Atleta>(null);
+  private pessoaContext: Pessoa = null;
+  private atletaContext: any = null;
 
   constructor(
     protected http: HttpClient,
@@ -44,25 +44,27 @@ export class AtletaService extends CrudService<Atleta> {
   }
 
   setPessoaContext(payload: Pessoa) {
-    this.behaviosSubjectPessoa$.next(payload);
+    this.pessoaContext = payload;
   }
 
-  getPessoaContext(): Observable<Pessoa> {
-    return this.behaviosSubjectPessoa$.asObservable();
+  getPessoaContext(): Pessoa {
+    console.log(this.pessoaContext);
+    return this.pessoaContext;
   }
 
-  setAtletaContext(payload: Atleta) {
-    this.behaviosSubjectAtleta$.next(payload);
+  setAtletaContext(payload: any) {
+    this.atletaContext = payload;
   }
 
-  getAtletaContext(): Observable<Atleta> {
-    return this.behaviosSubjectAtleta$.asObservable();
+  getAtletaContext(): any {
+    return this.atletaContext;
   }
 
-  getAssociacoes(paginacao) {
+  getAssociacoes(paginacao?: any) {
     const filtro = {
+      filtro: '',
       paginacao: this.paginacaoResolver.paginacaoResolver(TipoOrdenacao.CRESCENTE, 0, 10)
     };
-    return this.associacaoService.getAll(paginacao);
+    return this.associacaoService.getAll(filtro);
   }
 }

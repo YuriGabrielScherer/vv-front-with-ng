@@ -1,3 +1,5 @@
+import { Atleta } from './../../../../shared/model/atleta';
+import { map } from 'rxjs/operators';
 import { AtletaService } from './../../atleta.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Pessoa } from './../../../../shared/model/pessoa';
@@ -14,26 +16,30 @@ export class AtletaFormComponent implements OnInit {
   pessoaSelecionada: Pessoa = new Pessoa();
 
   graduacoes: any[];
+  associacoes: Array<any> = Array();
 
   formulario: FormGroup;
+
+  private atleta: Atleta = null;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private atletaService: AtletaService
   ) {
-    const navigation = this.router.getCurrentNavigation();
-    this.pessoaSelecionada = navigation.extras.state.pessoa;
+    this.popularAssociacao();
+
+    this.pessoaSelecionada = this.atletaService.getPessoaContext();
+    if (this.atletaService.getAtletaContext() !== null) {
+      this.atleta = this.atletaService.getAtletaContext();
+    }
 
     this.criarFormulario();
   }
 
   ngOnInit(): void {
     this.popularGraduacao();
-    let a;
-    this.atletaService.getAssociacoes(a).subscribe((response) => {
-      console.log(response);
-    });
+    this.validacaoFormulario();
 
   }
 
@@ -41,20 +47,7 @@ export class AtletaFormComponent implements OnInit {
   // Metodos Publicos
   //
 
-  public onSubmit() {
-    console.log(this.formulario);
-    if (this.formulario.valid === false) {
-      this.validateAllForm(this.formulario);
-      return;
-    }
 
-
-
-  }
-
-  public onCancel() {
-    this.router.navigate(['/administrativo/atleta/cadastrar/pessoa']);
-  }
 
   //
   // Metodos Privados
@@ -73,22 +66,75 @@ export class AtletaFormComponent implements OnInit {
     ];
   }
 
+  private popularAssociacao() {
+    this.atletaService.getAssociacoes()
+      .subscribe((response: any) => {
+        response.associacoes.forEach((a: any) => {
+          a.label = `Código - ${a.nome}`;
+          a.value = a.id;
+          this.associacoes.push(a);
+        });
+
+        this.preencherFormulario();
+      });
+  }
+
   private criarFormulario() {
     this.formulario = this.formBuilder.group({
       nome: [this.pessoaSelecionada.nome],
       cpf: [this.pessoaSelecionada.cpf],
       endereco: [undefined, Validators.compose([Validators.required, Validators.maxLength(30)])],
-      faixa: [undefined, Validators.compose([Validators.required])],
-      cadFck: [undefined, Validators.compose([Validators.required, Validators.maxLength(5)])],
-      cadCbk: [undefined, Validators.compose([Validators.required, Validators.maxLength(5)])],
+      faixa: [1, Validators.compose([Validators.required])],
+      federacao: [undefined, Validators.compose([Validators.required, Validators.maxLength(5)])],
+      confederacao: [undefined, Validators.compose([Validators.required, Validators.maxLength(5)])],
       nomeResponsavel: [undefined, Validators.compose([Validators.required, Validators.maxLength(100)])],
       cpfResponsavel: [undefined, Validators.compose([Validators.required, Validators.maxLength(11)])],
       telefoneResponsavel: [undefined, Validators.compose([Validators.required, Validators.maxLength(14)])],
+      associacao: [1, Validators.compose([Validators.required])]
     });
   }
 
-  private validateAllForm(formGroup: FormGroup) {
+  private validacaoFormulario() {
+    this.formulario.statusChanges.subscribe((formValid) => {
+      if (formValid === 'VALID') {
 
+        console.log(this.prepareValues());
+        this.atletaService.setAtletaContext(this.prepareValues());
+      }
+    });
+  }
+
+  private prepareValues() {
+    const payload = {
+      nomeResponsavel: this.formulario.get('nomeResponsavel').value,
+      cpfResponsavel: this.formulario.get('cpfResponsavel').value,
+      telefoneResponsavel: this.formulario.get('telefoneResponsavel').value,
+      endereco: this.formulario.get('endereco').value,
+      confederacao: this.formulario.get('confederacao').value,
+      federacao: this.formulario.get('federacao').value,
+      grau: this.formulario.get('faixa').value,
+      idAssociacao: this.formulario.get('associacao').value
+    };
+
+    return payload;
+  }
+
+  private preencherFormulario() {
+    if (this.atleta == null) {
+      this.formulario.get('associacao').setValue(1);
+      return;
+    }
+
+    this.formulario.patchValue({
+      nomeResponsavel: this.atleta.nomeResponsavel,
+      cpfResponsavel: this.atleta.cpfResponsavel,
+      telefoneResponsavel: this.atleta.telefoneResponsavel,
+      endereco: this.atleta.endereco,
+      confederacao: this.atleta.confederacao,
+      federacao: this.atleta.federacao,
+      grau: this.atleta.grau,
+      associacao: this.atleta.idAssociacao,
+    });
   }
 
 }

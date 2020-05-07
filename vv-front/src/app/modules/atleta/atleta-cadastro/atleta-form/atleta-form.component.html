@@ -1,4 +1,4 @@
-<form [formGroup]="formulario" (submit)="onSubmit()">
+<form [formGroup]="formulario" >
   <div class="ui-fluid">
     <div class="ui-g-12 ui-md-6 ui-md-6">
       <div class="divFormulario">
@@ -25,15 +25,16 @@
         <div class="ui-g-12 ui-md-6">
           <input id="fck" size="5" pKeyFilter="pint" type="text" pInputText
             placeholder="Cadasto FCK"
-            formControlName="cadFck" />
+            formControlName="federacao" />
         </div>
         <div class="ui-g-12 ui-md-6">
           <input id="cbk" size="5" pKeyFilter="pint" type="text" pInputText
             placeholder="Cadastro CBK"
-            formControlName="cadCbk" />
+            formControlName="confederacao" />
         </div>
-        <div class="ui-g-12 ui-md-6">
-
+        <div class="ui-g-12 ui-md-12">
+          <p-dropdown [options]="associacoes" name="associacoes"
+            formControlName="associacao"></p-dropdown>
         </div>
       </div>
     </div>
@@ -72,11 +73,10 @@
   <div class="ui-g-12">
     <div class="divFormulario">
       <div class="ui-g-12 ui-md-6">
-        <button pButton type="submit" class="ui-button ui-button-success"
-          label="Confirmar"></button>
-        <button pButton type="button" class="ui-button ui-button-secondary"
-          (click)="onCancel()"
-          label="Cancelar"></button>
+        <p-message *ngIf="formulario.valid" severity="success" text="Tudo
+          certo! Você pode ir para a confirmação dos dados."></p-message>
+        <p-message *ngIf="!formulario.valid" severity="warn" text="Por favor,
+          preencha corretamente os dados para continuar."></p-message>
       </div>
     </div>
   </div>
