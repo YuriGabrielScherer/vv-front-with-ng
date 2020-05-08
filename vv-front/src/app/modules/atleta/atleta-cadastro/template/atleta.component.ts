@@ -12,6 +12,7 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-atleta',
   templateUrl: './atleta.component.html',
+  styles: ["node_modules/primeflex/primeflex.css"],
   styleUrls: ['./atleta.component.scss'],
   preserveWhitespaces: true
 })
