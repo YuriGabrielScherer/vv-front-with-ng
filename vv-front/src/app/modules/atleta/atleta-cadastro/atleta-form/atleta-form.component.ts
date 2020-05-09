@@ -1,10 +1,9 @@
-import { Atleta } from './../../../../shared/model/atleta';
-import { map } from 'rxjs/operators';
-import { AtletaService } from './../../atleta.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Pessoa } from './../../../../shared/model/pessoa';
-import { Router, Navigation } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
+import { Pessoa } from './../../../../shared/model/pessoa';
+import { Atleta } from './../../../../shared/model/atleta';
+import { AtletaService } from './../../atleta.service';
 
 @Component({
   selector: 'app-atleta-form',
@@ -23,7 +22,6 @@ export class AtletaFormComponent implements OnInit {
   private atleta: Atleta = null;
 
   constructor(
-    private router: Router,
     private formBuilder: FormBuilder,
     private atletaService: AtletaService
   ) {
@@ -40,7 +38,6 @@ export class AtletaFormComponent implements OnInit {
   ngOnInit(): void {
     this.popularGraduacao();
     this.validacaoFormulario();
-
   }
 
   //
@@ -69,10 +66,10 @@ export class AtletaFormComponent implements OnInit {
   private popularAssociacao() {
     this.atletaService.getAssociacoes()
       .subscribe((response: any) => {
-        response.associacoes.forEach((a: any) => {
-          a.label = `Código - ${a.nome}`;
-          a.value = a.id;
-          this.associacoes.push(a);
+        response.associacoes.forEach((associacao: any) => {
+          associacao.label = `Código - ${associacao.nome}`;
+          associacao.value = associacao.id;
+          this.associacoes.push(associacao);
         });
 
         this.preencherFormulario();
@@ -92,6 +89,13 @@ export class AtletaFormComponent implements OnInit {
       telefoneResponsavel: [undefined, Validators.compose([Validators.required, Validators.maxLength(14)])],
       associacao: [1, Validators.compose([Validators.required])]
     });
+
+    setTimeout(() => {
+      this.formulario.get('cpf').setValue(this.pessoaSelecionada.cpf);
+      this.formulario.get('cpf').markAsDirty();
+      this.formulario.get('nome').markAsDirty();
+
+    }, 200);
   }
 
   private validacaoFormulario() {

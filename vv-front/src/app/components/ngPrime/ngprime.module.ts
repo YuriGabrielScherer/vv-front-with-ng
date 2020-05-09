@@ -22,6 +22,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { DropdownModule } from 'primeng/dropdown';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { MessageModule } from 'primeng/message';
     DropdownModule,
     MessagesModule,
     MessageModule,
-    // DialogModule
+    InputMaskModule
   ],
   exports: [
     TableModule,
@@ -68,7 +69,7 @@ import { MessageModule } from 'primeng/message';
     DropdownModule,
     MessagesModule,
     MessageModule,
-    // DialogModule
+    InputMaskModule
   ],
   providers: [
     MessageService

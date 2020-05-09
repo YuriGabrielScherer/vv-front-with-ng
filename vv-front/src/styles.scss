@@ -1,5 +1,5 @@
 /* O ~ referencia o node_modules */
-@import '~bootstrap/dist/css/bootstrap.min.css';
+// @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~ngx-toastr/toastr';
 
 html,
@@ -16,4 +16,28 @@ body {
   float: left!important;
 }
 
+// Menu Lateral - Painel Administrativo
+.ui-menu {
+  width: 100%;
+}
+
+// Header
+.ui-menubar{
+  padding-top: 10px!important;
+  min-height: 65px;
+}
+
+.ui-menubar-custom {
+  padding-top: 7px!important;
+}
+
+// Adequando o tamanho da tela para não haver barra de rolagem horizontal
+.sample-layout {
+  margin-right: 0;
+}
+
+// Width 100% para os campos de Formulario preencherem a linha completa
+.inputWidth{
+  width: 100%;
+}
 

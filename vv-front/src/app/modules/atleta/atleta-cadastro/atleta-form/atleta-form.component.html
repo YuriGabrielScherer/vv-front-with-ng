@@ -1,83 +1,78 @@
-<form [formGroup]="formulario" >
-  <div class="ui-fluid">
-    <div class="ui-g-12 ui-md-6 ui-md-6">
-      <div class="divFormulario">
-        <div class="ui-g-12">
-          <h5>Dados do Atleta</h5>
-        </div>
-        <div class="ui-g-12 ui-md-6">
-          <input id="nomeAtleta" readonly name="nomeAtleta" type="text"
-            pInputText formControlName="nome" />
+<form [formGroup]="formulario">
+  <div class="p-grid">
 
+    <!-- Primeira Metade -->
+    <div class="p-col-12 p-md-6 p-nogutter">
+      <div class="p-grid">
+        <div class="p-col-12">
+          <h5>Dados do Atleta</h5>
+          <hr>
         </div>
-        <div class="ui-g-12 ui-md-6">
-          <input id="cpfAtleta" readonly name="cpfAtleta" type="text" pInputText
-            formControlName="cpf" />
+        <div class="p-col-12 p-md-6">
+          <input class="inputWidth" id="nomeAtleta" readonly name="nomeAtleta"
+            type="text"
+            pInputText formControlName="nome" />
         </div>
-        <div class="ui-g-12 ui-md-6">
-          <input id="endereco" size="" type="text" pInputText
+        <div class="p-col-12 p-md-6">
+          <p-inputMask [style]="{'width':'100%'}" id="cpf" readonly="true" mask="999.999.999-99" formControlName="cpf"></p-inputMask>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <input class="inputWidth" id="endereco" size="" type="text" pInputText
             placeholder="Endereço" formControlName="endereco" />
         </div>
-        <div class="ui-g-12 ui-md-6">
-          <p-dropdown [options]="graduacoes" name="graduacao"
+        <div class="p-col-12 p-md-6">
+          <p-dropdown [style]="{'width':'100%'}" [options]="graduacoes"
+            name="graduacao"
             formControlName="faixa"></p-dropdown>
         </div>
-        <div class="ui-g-12 ui-md-6">
-          <input id="fck" size="5" pKeyFilter="pint" type="text" pInputText
-            placeholder="Cadasto FCK"
+        <div class="p-col-6">
+          <input class="inputWidth" id="fck" size="5" pKeyFilter="pint"
+            type="text" pInputText
+            placeholder="Cadastro FCK"
             formControlName="federacao" />
         </div>
-        <div class="ui-g-12 ui-md-6">
-          <input id="cbk" size="5" pKeyFilter="pint" type="text" pInputText
+        <div class="p-col-6">
+          <input class="inputWidth" id="cbk" size="5" pKeyFilter="pint"
+            type="text" pInputText
             placeholder="Cadastro CBK"
             formControlName="confederacao" />
         </div>
-        <div class="ui-g-12 ui-md-12">
-          <p-dropdown [options]="associacoes" name="associacoes"
+        <div class="p-col-12">
+          <p-dropdown [style]="{'width':'100%'}" [options]="associacoes"
+            name="associacoes"
             formControlName="associacao"></p-dropdown>
         </div>
       </div>
     </div>
-  </div>
-  <div class="ui-fluid">
-    <div class="ui-g-12 ui-md-6 ui-md-6">
-      <div class="divFormulario">
-        <div class="ui-g-12">
+
+    <!-- Segunda Metade -->
+    <div class="p-col-12 p-md-6 p-nogutter">
+      <div class="p-grid">
+        <div class="p-col-12">
           <h5>Dados do Responsável</h5>
+          <hr>
         </div>
-        <div class="ui-g-12 ui-md-6">
-          <input id="nomeResponsavel" size="30" type="text" pInputText
+        <div class="p-col-12 p-md-6">
+          <input class="inputWidth" id="nomeResponsavel" size="30" type="text"
+            pInputText
             placeholder="Nome"
             formControlName="nomeResponsavel" />
         </div>
-        <div class="ui-g-12 ui-md-6">
-          <input id="telefoneResponsavel" size="30" type="text" pInputText
-            placeholder="Telefone"
-            formControlName="cpfResponsavel" />
+        <div class="p-col-12 p-md-6">
+          <p-inputMask [style]="{'width':'100%'}" placeholder="Celular" id="telefoneResponsavel" mask="(99) 99999-9999" formControlName="telefoneResponsavel"></p-inputMask>
         </div>
-        <div class="ui-g-12 ui-md-6">
-          <input id="cpfResponsavel" size="" type="text" pInputText
-            placeholder="CPF"
-            formControlName="telefoneResponsavel" />
+        <div class="p-col-12 p-md-6">
+          <p-inputMask [style]="{'width':'100%'}" placeholder="CPF" id="cpfResponsavel" mask="999.999.999-99" formControlName="cpfResponsavel"></p-inputMask>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="ui-grid-col-12">
-    <p-message severity="error" text="endereco is required"
-      *ngIf="!formulario.controls['endereco'].valid &&
-      formulario.controls['endereco'].dirty"></p-message>
-  </div>
-
-  <div class="ui-g-12">
-    <div class="divFormulario">
-      <div class="ui-g-12 ui-md-6">
-        <p-message *ngIf="formulario.valid" severity="success" text="Tudo
-          certo! Você pode ir para a confirmação dos dados."></p-message>
-        <p-message *ngIf="!formulario.valid" severity="warn" text="Por favor,
-          preencha corretamente os dados para continuar."></p-message>
-      </div>
+    <!-- Campos de retorno para o usuario -->
+    <div class="p-col-12">
+      <p-message *ngIf="formulario.valid" severity="success" text="Tudo
+        certo! Você pode ir para a confirmação dos dados."></p-message>
+      <p-message *ngIf="!formulario.valid" severity="warn" text="Por favor,
+        preencha corretamente os dados para continuar."></p-message>
     </div>
   </div>
 </form>

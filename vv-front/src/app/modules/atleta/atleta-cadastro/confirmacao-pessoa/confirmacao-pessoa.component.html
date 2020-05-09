@@ -1,42 +1,45 @@
-<div class="ui-g-6 ui-m-6">
-  <p-listbox
-    [options]="pessoas"
-    [(ngModel)]="pessoaSelecionada"
-    [multiple]="false"
-    [checkbox]="true"
-    [filter]="true"
-    optionLabel="nome"
-    class="listbox"
-    [listStyle]="{ 'max-height': '250px', 'min-width': '200px' }"
-    (onClick)="selecionouPessoa()">
+<div class="p-grid">
+  <div class="p-col-12 p-md-6">
+    <p-listbox
+      [options]="pessoas"
+      [(ngModel)]="pessoaSelecionada"
+      [multiple]="false"
+      [checkbox]="true"
+      [filter]="true"
+      optionLabel="nome"
+      class="listbox"
+      [listStyle]="{ 'max-height': '250px', 'min-width': '200px' }"
+      (onClick)="selecionouPessoa()">
 
-    <p-header>
-      Selecione uma pessoa para continuar
-    </p-header>
-  </p-listbox>
-</div>
+      <p-header>
+        Selecione uma pessoa para continuar
+      </p-header>
+    </p-listbox>
+  </div>
 
-<div class="ui-g-6 ui-m-6">
-  <p-card header="{{ tituloCard }}" *ngIf="pessoaSelecionada != undefined">
-    <div class="ui-g">
-      <div class="ui-g-6 ui-m-6">Nome: {{ pessoaSelecionada.nome }}</div>
-      <div class="ui-g-6 ui-m-6">Data Nascimento: {{ pessoaSelecionada.dataNascimento }}</div>
-      <div class="ui-g-6 ui-m-6">CPF: {{ pessoaSelecionada.cpf | mascaraCpf }}</div>
-      <div class="ui-g-6 ui-m-6">Telefone: {{ pessoaSelecionada.telefone | mascaraTelefone }}</div> <!--Criar pipe para telefone-->
-      <div class="ui-g-6 ui-m-6">E-mail: {{ pessoaSelecionada.email }}</div>
-      <div class="ui-g-6 ui-m-6">Sexo: {{ pessoaSelecionada.sexo | sexo }}</div>
-      <br>
-      <div class="ui-g-6 ui-m-6">
-        <button
-          pButton
-          type="button"
-          icon="pi pi-user-edit"
-          class="ui-button-warning"
-          iconPos="left"
-          label="Alterar"
-          (click)="alterarPessoa()">
-        </button>
+  <div class="p-col-12 p-md-6">
+    <p-card header="{{ tituloCard }}" *ngIf="pessoaSelecionada != undefined">
+      <hr>
+      <div class="p-grid">
+        <div class="p-col-6 p-md-6">Nome: {{ pessoaSelecionada.nome }}</div>
+        <div class="p-col-6 p-md-6">Data Nascimento: {{
+          pessoaSelecionada.dataNascimento }}</div>
+        <div class="p-col-6 p-md-6">CPF: {{ pessoaSelecionada.cpf | mascaraCpf }}</div>
+        <div class="p-col-6 p-md-6">Telefone: {{ pessoaSelecionada.telefone | mascaraTelefone }}</div>
+        <div class="p-col-6 p-md-6">E-mail: {{ pessoaSelecionada.email }}</div>
+        <div class="p-col-6 p-md-6">Sexo: {{ pessoaSelecionada.sexo | sexo }}</div>
+        <div class="p-col-12 p-md-12">
+          <button
+            pButton
+            type="button"
+            icon="pi pi-user-edit"
+            class="ui-button-warning"
+            iconPos="left"
+            label="Alterar"
+            (click)="alterarPessoa()">
+          </button>
+        </div>
       </div>
-    </div>
-  </p-card>
+    </p-card>
+  </div>
 </div>

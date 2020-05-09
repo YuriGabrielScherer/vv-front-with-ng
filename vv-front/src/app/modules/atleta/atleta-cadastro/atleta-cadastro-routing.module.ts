@@ -1,6 +1,6 @@
 import { AtletaService } from './../atleta.service';
 import { ConfirmacaoCadastroComponent } from './confirmacao-cadastro/confirmacao-cadastro.component';
-import { Routes, RouterModule, CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, Navigation, ActivatedRoute } from '@angular/router';
+import { Routes, RouterModule, CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { NgModule, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 

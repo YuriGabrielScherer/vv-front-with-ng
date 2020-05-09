@@ -48,7 +48,6 @@ export class AtletaService extends CrudService<Atleta> {
   }
 
   getPessoaContext(): Pessoa {
-    console.log(this.pessoaContext);
     return this.pessoaContext;
   }
 

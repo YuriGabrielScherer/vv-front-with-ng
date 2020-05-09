@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AtletaService } from '../../atleta.service';
 
@@ -12,11 +12,10 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-atleta',
   templateUrl: './atleta.component.html',
-  styles: ["node_modules/primeflex/primeflex.css"],
   styleUrls: ['./atleta.component.scss'],
   preserveWhitespaces: true
 })
-export class AtletaComponent implements OnInit {
+export class AtletaComponent implements OnInit, OnDestroy {
 
   steps: MenuItem[];
 
@@ -31,6 +30,10 @@ export class AtletaComponent implements OnInit {
 
   ngOnInit() {
     this.criarSteps();
+  }
+
+  ngOnDestroy() {
+    this.atletaService.setPessoaContext(null);
   }
 
 
@@ -59,7 +62,6 @@ export class AtletaComponent implements OnInit {
     switch (rota) {
       case 'atleta': {
         if (this.atletaService.getPessoaContext() !== null) {
-          console.log('entrei no if');
           this.router.navigateByUrl('/administrativo/atleta/cadastrar/atleta');
         } else {
           this.toastErroMudarStep('Por favor, selecione uma pessoa antes de continuar.');

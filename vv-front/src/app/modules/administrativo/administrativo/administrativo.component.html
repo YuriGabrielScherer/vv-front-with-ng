@@ -1,21 +1,20 @@
-<header class="header ui-g">
-  <div class="divLeft">
-    <img src="./../../../assets/header/logotipo1.png" class="logotipo">
+<div class="p-grid sample-layout">
+  <!-- Div Menu -->
+  <div class="p-col-12 p-md-2" style="padding-right: 0!important;">
+    <p-menu [model]="itemsMenu"></p-menu>
   </div>
-  <div class="divCentral">
-      <p-menubar [model]="itemsMenuBar" class="pMenu">
-        <button pButton label="Sair" icon="pi pi-power-off"></button>
-      </p-menubar>
-  </div>
-</header>
 
-<div class="ui-g">
-<div class="divMenu">
-  <p-menu [model]="itemsMenu"></p-menu>
-</div>
-  <div class="ui-g-nopad divCentral">
-    <div class="ui-g-12 ui-g-nopad">
+  <!-- Div Central -->
+  <div class="p-col-12 p-md-10 p-col-nogutter">
+    <!-- Div Top Bar -->
+    <div class="p-col-12 ">
+        <p-menubar [model]="itemsMenuBar">
+          <button pButton label="Sair" icon="pi pi-power-off"></button>
+        </p-menubar>
+    </div>
+    <!-- Conteudo Div Central -->
+    <div class="p-col-12 p-nogutter">
       <router-outlet></router-outlet>
     </div>
-    </div>
+  </div>
 </div>
