@@ -41,18 +41,18 @@ export class AtletaComponent implements OnInit, OnDestroy {
     this.steps = [
       {
         label: 'Pessoa',
-        routerLink: ['/administrativo/atleta/cadastrar/pessoa'],
+        routerLink: ['/administrativo/atleta/cadastrar/1'],
       },
       {
         label: 'Atleta',
         command: () => {
-          this.navegarStep('atleta');
+          this.navegarStep('2');
         }
       },
       {
         label: 'Confirmação',
         command: () => {
-          this.navegarStep('confirmacao');
+          this.navegarStep('3');
         }
       }
     ];
@@ -60,17 +60,17 @@ export class AtletaComponent implements OnInit, OnDestroy {
 
   private navegarStep(rota: string) {
     switch (rota) {
-      case 'atleta': {
+      case '2': {
         if (this.atletaService.getPessoaContext() !== null) {
-          this.router.navigateByUrl('/administrativo/atleta/cadastrar/atleta');
+          this.router.navigateByUrl('/administrativo/atleta/cadastrar/2');
         } else {
           this.toastErroMudarStep('Por favor, selecione uma pessoa antes de continuar.');
         }
         break;
       }
-      case 'confirmacao': {
+      case '3': {
         if (this.atletaService.getAtletaContext() !== null && this.atletaService.getPessoaContext() !== null) {
-          this.router.navigateByUrl('/administrativo/atleta/cadastrar/confirmacao');
+          this.router.navigateByUrl('/administrativo/atleta/cadastrar/3');
         } else {
           this.toastErroMudarStep('Por favor, selecione um atleta antes de continuar.');
         }

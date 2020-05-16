@@ -23,6 +23,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { InputMaskModule } from 'primeng/inputmask';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { InputMaskModule } from 'primeng/inputmask';
     DropdownModule,
     MessagesModule,
     MessageModule,
-    InputMaskModule
+    InputMaskModule,
+    ConfirmDialogModule
   ],
   exports: [
     TableModule,
@@ -69,9 +72,11 @@ import { InputMaskModule } from 'primeng/inputmask';
     DropdownModule,
     MessagesModule,
     MessageModule,
-    InputMaskModule
+    InputMaskModule,
+    ConfirmDialogModule
   ],
   providers: [
+    ConfirmationService,
     MessageService
   ]
 })

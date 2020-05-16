@@ -1,1 +1,49 @@
-<p>confirmacao-cadastro works!</p>
+<div class="p-grid">
+  <div class="p-col-12">
+    <h5>Confirmação dos dados</h5>
+    <hr>
+  </div>
+  <div class="p-col-12">
+    <p-card>
+      <div class="p-grid">
+        <div class="p-col-6 border1">
+          <div class="p-grid">
+            <div class="p-col-6 p-md-12">
+              <strong>Dados Pessoais</strong>
+              <hr>
+            </div>
+            <div class="p-col-12 p-md-6">Nome: {{ pessoaSelecionada.nome }}</div>
+            <div class="p-col-12 p-md-6">Data Nascimento: {{ pessoaSelecionada.dataNascimento }}</div>
+            <div class="p-col-12 p-md-6">CPF: {{ pessoaSelecionada.cpf | mascaraCpf }}</div>
+            <div class="p-col-12 p-md-6">Telefone: {{ pessoaSelecionada.telefone | mascaraTelefone }}</div>
+            <div class="p-col-12 p-md-6">E-mail: {{ pessoaSelecionada.email }}</div>
+            <div class="p-col-12 p-md-6">Sexo: {{ pessoaSelecionada.sexo | sexo }}</div>
+            <div class="p-col-12 p-md-12">Endereço: {{ atletaSelecionado.endereco !== null ? atletaSelecionado.endereco : "Não informado." }}</div>
+            <div class="p-col-12 p-md-6">Federação: {{ atletaSelecionado.federacao !== null ? atletaSelecionado.federacao : "Não informado." }} </div>
+            <div class="p-col-12 p-md-6">Confederação: {{ atletaSelecionado.confederacao !== null ? atletaSelecionado.confederacao : "Não informado." }} </div>
+            <div class="p-col-12 p-md-12">Associação: {{ atletaSelecionado.associacao.nome }}</div>
+          </div>
+        </div>
+        <div class="p-col-6">
+          <div class="p-grid">
+            <div class="p-col-6 p-md-12">
+              <strong>Responsável</strong>
+              <hr>
+            </div>
+            <div class="p-col-12 p-md-6">Nome: {{ atletaSelecionado.nomeResponsavel }}</div>
+            <div class="p-col-12 p-md-6">Telefone: {{ atletaSelecionado.telefoneResponsavel }}</div>
+            <div class="p-col-12 p-md-6">CPF: {{ atletaSelecionado.cpfResponsavel }}</div>
+          </div>
+        </div>
+        <div class="p-col-12">
+          <button pButton type="button" label="Confirmar" (click)="confirmarDados()"></button>
+          <button pButton type="button" class="ui-button ui-button-warning" label="Cancelar" (click)="cancelarOperacao()"></button>
+        </div>
+      </div>
+    </p-card>
+  </div>
+  <div class="p-col-12 p-md-6">
+
+  </div>
+</div>
+

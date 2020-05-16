@@ -19,7 +19,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class AtletaService extends CrudService<Atleta> {
 
   private pessoaContext: Pessoa = null;
-  private atletaContext: any = null;
+  private atletaContext: Atleta = null;
 
   constructor(
     protected http: HttpClient,
@@ -30,13 +30,6 @@ export class AtletaService extends CrudService<Atleta> {
 
     // Construtor do CrudService
     super(http, `${environment.API}atleta`);
-  }
-
-  cadastrarFck() {
-    return this.http.get<string>(`${environment.API}fck`)
-      .pipe(
-        take(1)
-      );
   }
 
   getPessoasCadastroAtleta() {
@@ -51,11 +44,11 @@ export class AtletaService extends CrudService<Atleta> {
     return this.pessoaContext;
   }
 
-  setAtletaContext(payload: any) {
+  setAtletaContext(payload: Atleta) {
     this.atletaContext = payload;
   }
 
-  getAtletaContext(): any {
+  getAtletaContext(): Atleta {
     return this.atletaContext;
   }
 

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -31,7 +31,12 @@ export class CrudService<Type> {
 
   // Metodo Generico para Criacao
   private create(record: Type) {
-    return this.http.post(`${this.API_URL}/cadastrar`, record).pipe(take(1));
+    return this.http.post(`${this.API_URL}/cadastrar`,
+      record,
+      {
+        responseType: 'text'
+      })
+      .pipe(take(1));
   }
 
   // Metodo Generico para Atualizacao

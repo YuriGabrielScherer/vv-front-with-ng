@@ -1,3 +1,5 @@
+import { ValidacoesFormService } from './../../../../core/service/form/validacoes-form.service';
+import { finalize } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -23,7 +25,8 @@ export class AtletaFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private atletaService: AtletaService
+    private atletaService: AtletaService,
+    private validacaoForm: ValidacoesFormService
   ) {
     this.popularAssociacao();
 
@@ -44,6 +47,9 @@ export class AtletaFormComponent implements OnInit {
   // Metodos Publicos
   //
 
+  teste() {
+    console.log(this.formulario);
+  }
 
 
   //
@@ -65,14 +71,17 @@ export class AtletaFormComponent implements OnInit {
 
   private popularAssociacao() {
     this.atletaService.getAssociacoes()
+      .pipe(
+        finalize(() => {
+          this.preencherFormulario();
+        })
+      )
       .subscribe((response: any) => {
         response.associacoes.forEach((associacao: any) => {
           associacao.label = `Código - ${associacao.nome}`;
-          associacao.value = associacao.id;
+          associacao.value = associacao;
           this.associacoes.push(associacao);
         });
-
-        this.preencherFormulario();
       });
   }
 
@@ -80,14 +89,15 @@ export class AtletaFormComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       nome: [this.pessoaSelecionada.nome],
       cpf: [this.pessoaSelecionada.cpf],
-      endereco: [undefined, Validators.compose([Validators.required, Validators.maxLength(30)])],
+      endereco: [undefined, Validators.compose([Validators.maxLength(30)])],
       faixa: [1, Validators.compose([Validators.required])],
-      federacao: [undefined, Validators.compose([Validators.required, Validators.maxLength(5)])],
-      confederacao: [undefined, Validators.compose([Validators.required, Validators.maxLength(5)])],
+      federacao: [undefined, Validators.compose([Validators.maxLength(5)])],
+      confederacao: [undefined, Validators.compose([Validators.maxLength(5)])],
       nomeResponsavel: [undefined, Validators.compose([Validators.required, Validators.maxLength(100)])],
-      cpfResponsavel: [undefined, Validators.compose([Validators.required, Validators.maxLength(11)])],
-      telefoneResponsavel: [undefined, Validators.compose([Validators.required, Validators.maxLength(14)])],
-      associacao: [1, Validators.compose([Validators.required])]
+      cpfResponsavel: [undefined, Validators.compose([Validators.required, Validators.maxLength(14), this.validacaoForm.isValidCpf()])],
+      telefoneResponsavel: [undefined, Validators.compose([Validators.required,
+        Validators.maxLength(15), this.validacaoForm.isValidPhone()])],
+      associacao: [this.associacoes[0], Validators.compose([Validators.required])]
     });
 
     setTimeout(() => {
@@ -101,31 +111,28 @@ export class AtletaFormComponent implements OnInit {
   private validacaoFormulario() {
     this.formulario.statusChanges.subscribe((formValid) => {
       if (formValid === 'VALID') {
-
-        console.log(this.prepareValues());
         this.atletaService.setAtletaContext(this.prepareValues());
       }
     });
   }
 
   private prepareValues() {
-    const payload = {
-      nomeResponsavel: this.formulario.get('nomeResponsavel').value,
-      cpfResponsavel: this.formulario.get('cpfResponsavel').value,
-      telefoneResponsavel: this.formulario.get('telefoneResponsavel').value,
-      endereco: this.formulario.get('endereco').value,
-      confederacao: this.formulario.get('confederacao').value,
-      federacao: this.formulario.get('federacao').value,
-      grau: this.formulario.get('faixa').value,
-      idAssociacao: this.formulario.get('associacao').value
-    };
+    const payload: Atleta = new Atleta();
+    payload.nomeResponsavel = this.formulario.get('nomeResponsavel').value;
+    payload.cpfResponsavel = this.formulario.get('cpfResponsavel').value;
+    payload.telefoneResponsavel = this.formulario.get('telefoneResponsavel').value;
+    payload.endereco = this.formulario.get('endereco').value;
+    payload.confederacao = this.formulario.get('confederacao').value;
+    payload.federacao = this.formulario.get('federacao').value;
+    payload.grau = this.formulario.get('faixa').value;
+    payload.associacao = this.formulario.get('associacao').value;
 
     return payload;
   }
 
   private preencherFormulario() {
     if (this.atleta == null) {
-      this.formulario.get('associacao').setValue(1);
+      this.formulario.get('associacao').setValue(this.associacoes[0]);
       return;
     }
 
@@ -137,7 +144,7 @@ export class AtletaFormComponent implements OnInit {
       confederacao: this.atleta.confederacao,
       federacao: this.atleta.federacao,
       grau: this.atleta.grau,
-      associacao: this.atleta.idAssociacao,
+      associacao: this.atleta.associacao,
     });
   }
 

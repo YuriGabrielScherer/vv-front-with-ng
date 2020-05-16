@@ -29,7 +29,7 @@ export class AtletaCadastroGuard implements CanActivate {
         detail: 'Você precisa selecionar uma pessoa antes de continuar.',
       });
 
-      this.router.navigate(['/administrativo/atleta/cadastrar/pessoa']);
+      this.router.navigate(['/administrativo/atleta/cadastrar/1']);
       return false;
     }
 
@@ -53,7 +53,7 @@ export class ConfirmacaoCadastroGuard implements CanActivate {
         detail: 'Você precisa selecionar uma atleta antes de continuar.',
       });
 
-      this.router.navigate(['/administrativo/atleta/cadastrar/atleta']);
+      this.router.navigate(['/administrativo/atleta/cadastrar/2']);
       return false;
     }
 
@@ -63,19 +63,19 @@ export class ConfirmacaoCadastroGuard implements CanActivate {
 
 const routes: Routes = [
   {
-    path: '', pathMatch: 'full', redirectTo: 'pessoa'
+    path: '', pathMatch: 'full', redirectTo: '1'
   },
   {
-    path: 'pessoa',
+    path: '1',
     component: ConfirmacaoPessoaComponent,
   },
   {
-    path: 'atleta',
+    path: '2',
     component: AtletaFormComponent,
     canActivate: [AtletaCadastroGuard]
   },
   {
-    path: 'confirmacao',
+    path: '3',
     component: ConfirmacaoCadastroComponent,
     canActivate: [ConfirmacaoCadastroGuard]
   }
