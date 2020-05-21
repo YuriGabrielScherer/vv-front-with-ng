@@ -32,6 +32,10 @@ export class AtletaService extends CrudService<Atleta> {
     super(http, `${environment.API}atleta`);
   }
 
+  getDados(){
+    return this.http.get('/assets/data/data.json').pipe(take(1));
+  }
+
   getPessoasCadastroAtleta() {
     return this.pessoaService.retornarPessoasCadastroAtleta();
   }

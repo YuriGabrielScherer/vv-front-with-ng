@@ -7,11 +7,12 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { AuthGuard } from '../../core/guards/auth-guard';
 import { ListarPessoaResolver } from './guards/listar-pessoas.resolver';
 import { PessoaAlteracaoResolver } from './guards/alterar-pessoa.resolver';
+import { CadastroAdministrativoComponent } from './cadastro/cadastro-administrativo/cadastro-administrativo.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'cadastro' },
   {
-    path: 'cadastro', component: CadastroComponent
+    path: 'cadastro', component: CadastroAdministrativoComponent
   },
   {
     path: 'cadastro/:id',

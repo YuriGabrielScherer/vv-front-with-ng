@@ -14,8 +14,6 @@ import { IndexComponent } from './modules/index/template/index.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { LoginComponent } from './core/authentication/template/login.component';
 
-import { AdministrativoModule } from './modules/administrativo/administrativo.module';
-import { PessoaModule } from './modules/pessoa/pessoa.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AuthGuard } from './core/guards/auth-guard';
@@ -42,9 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    AdministrativoModule,
     BrowserAnimationsModule,
-    PessoaModule,
     SharedModule,
     ReactiveFormsModule,
     TextMaskModule,

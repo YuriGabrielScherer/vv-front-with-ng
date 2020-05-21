@@ -57,7 +57,7 @@ export class AdministrativoComponent implements OnInit {
           {
             label: 'Cadastrar',
             icon: 'pi pi-fw pi-user-plus',
-            routerLink: ['/novaPessoa']
+            routerLink: ['/administrativo/pessoa']
           },
           {
             label: 'Listar',
@@ -76,8 +76,23 @@ export class AdministrativoComponent implements OnInit {
             icon: 'pi pi-fw pi-user-plus',
             routerLink: ['/administrativo/atleta/cadastrar']
           },
-          { label: 'Listar', icon: 'pi pi-fw pi-users' },
-          { label: 'Gerenciar', icon: 'pi pi-fw pi-cog' }
+          { label: 'Listar', icon: 'pi pi-fw pi-users', routerLink:'/administrativo/atleta/listar' },
+          { label: 'Gerenciar', icon: 'pi pi-fw pi-cog'}
+        ]
+      },
+      {
+        label: 'Associação',
+        items:[
+          {
+            label: 'Cadastrar',
+            icon: 'pi pi-fw pi-user-plus',
+            routerLink: ['/administrativo/associacao/cadastro']
+          },
+          {
+            label: 'Listagem',
+            icon: 'pi pi-fw pi-users',
+            routerLink: ['/administrativo/associacao/cadastro']//Provisório
+          }
         ]
       },
       {
