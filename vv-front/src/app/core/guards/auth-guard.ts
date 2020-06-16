@@ -23,8 +23,6 @@ export class AuthGuard implements CanActivate {
 
     // Verificando se a Rota pode ser ativada ou não.
     if (this.authService.isUserLoggedIn()) {
-
-      
       return true;
     }
 

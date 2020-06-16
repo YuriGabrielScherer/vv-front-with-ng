@@ -13,11 +13,13 @@ import { AssociacaoService } from './../associacao/associacao.service';
 
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { AtletaListComponent } from './listar-atleta/listar-atleta.component';
+import { AtletaFuncoesComponent } from './atleta-funcoes/atleta-funcoes.component';
 
 
 @NgModule({
-  declarations: [ AtletaListComponent],
+  declarations: [
+    AtletaFuncoesComponent,
+  ],
   imports: [
     AtletaCadastroModule,
     CommonModule,
